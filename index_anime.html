@@ -1,0 +1,288 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600&family=Inter:wght@400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0a0000;--bg2:#130000;--bg3:#1c0000;
+  --red:#cc0000;--red2:#ff2020;--red3:#ff6060;
+  --border:#3a0000;--border2:#660000;
+  --text:#f0e0e0;--text2:#c0a0a0;--text3:#805050;
+  --card:#110000;--tag:#2a0000;
+  --score:#ff2020;
+}
+.light{
+  --bg:#fff5f5;--bg2:#ffe8e8;--bg3:#ffd0d0;
+  --red:#cc0000;--red2:#990000;--red3:#660000;
+  --border:#f0c0c0;--border2:#e08080;
+  --text:#1a0000;--text2:#5a1010;--text3:#a04040;
+  --card:#ffffff;--tag:#ffe0e0;
+  --score:#cc0000;
+}
+
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;line-height:1.6;transition:background .3s,color .3s}
+
+.site{max-width:960px;margin:0 auto;padding:0 1rem 4rem}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:2px solid var(--red);margin-bottom:0}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--red2);letter-spacing:0.08em}
+.logo span{color:var(--text);font-size:1rem;font-family:'Rajdhani',sans-serif;letter-spacing:0.2em;vertical-align:middle;margin-left:8px;opacity:.6}
+.nav-right{display:flex;align-items:center;gap:12px}
+.toggle{cursor:pointer;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:6px 14px;color:var(--text2);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;letter-spacing:.05em;transition:border-color .2s,color .2s}
+.toggle:hover{border-color:var(--red2);color:var(--red3)}
+
+.hero{padding:2.5rem 0 2rem;border-bottom:1px solid var(--border)}
+.hero-eyebrow{font-size:12px;letter-spacing:.25em;color:var(--red);text-transform:uppercase;margin-bottom:.5rem}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,7vw,5rem);color:var(--text);line-height:1;margin-bottom:.75rem}
+.hero-title em{color:var(--red2);font-style:normal}
+.hero-desc{font-size:15px;color:var(--text2);max-width:520px;line-height:1.7;margin-bottom:1.5rem}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:2.5rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.stat-card:hover{border-color:var(--red)}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--score);line-height:1}
+.stat-lbl{font-size:12px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:1.5rem;align-items:center}
+.filter-btn{background:var(--tag);border:1px solid var(--border);border-radius:6px;padding:6px 14px;color:var(--text2);font-size:14px;font-family:'Rajdhani',sans-serif;cursor:pointer;transition:all .2s;letter-spacing:.04em}
+.filter-btn:hover,.filter-btn.active{background:var(--red);border-color:var(--red2);color:#fff}
+.search-wrap{margin-left:auto}
+.search-wrap input{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:7px 14px;color:var(--text);font-size:14px;font-family:'Rajdhani',sans-serif;width:200px;outline:none;transition:border-color .2s}
+.search-wrap input:focus{border-color:var(--red)}
+.search-wrap input::placeholder{color:var(--text3)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.anime-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .25s,transform .2s;cursor:pointer}
+.anime-card:hover{border-color:var(--red2);transform:translateY(-3px)}
+.card-banner{height:7px;background:var(--red)}
+.card-body{padding:14px 16px}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.card-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;color:var(--text);line-height:1.15;flex:1;margin-right:8px}
+.score-badge{background:#1a0000;border:1px solid var(--red);border-radius:5px;padding:3px 8px;font-size:13px;font-weight:500;color:var(--score);white-space:nowrap;font-family:'Rajdhani',sans-serif}
+.light .score-badge{background:#ffe0e0;border-color:var(--red)}
+.card-meta{font-size:13px;color:var(--text3);margin-bottom:10px}
+.card-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.genre-tag{background:var(--tag);border:1px solid var(--border);border-radius:4px;font-size:11px;padding:2px 8px;color:var(--text3);letter-spacing:.04em}
+.card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border)}
+.eps{font-size:12px;color:var(--text3)}
+.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}
+.s-airing{background:#22aa44}
+.s-finished{background:var(--red)}
+.s-upcoming{background:#aa8800}
+.card-footer span{font-size:12px;color:var(--text2)}
+
+.detail-overlay{display:none;background:rgba(0,0,0,0.7);padding:1rem 0;margin-top:1rem}
+.detail-overlay.open{display:block}
+.detail-box{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1.5rem;position:relative}
+.det-close{position:absolute;top:12px;right:16px;cursor:pointer;color:var(--text3);font-size:18px;font-family:'Bebas Neue',sans-serif;letter-spacing:.05em}
+.det-close:hover{color:var(--red2)}
+.det-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;padding-right:40px}
+.det-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--text);line-height:1.1}
+.det-score{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--score)}
+.det-body{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.det-desc{grid-column:1/-1;font-size:14px;color:var(--text2);line-height:1.7}
+.det-field label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);display:block;margin-bottom:2px}
+.det-field span{font-size:14px;color:var(--text)}
+.ask-btn{margin-top:1rem;background:var(--red);border:none;border-radius:6px;padding:8px 20px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:.05em;transition:background .2s}
+.ask-btn:hover{background:var(--red2)}
+
+.no-results{text-align:center;padding:3rem 1rem;color:var(--text3);font-size:1.1rem}
+
+footer{text-align:center;padding:2rem 0 0;border-top:1px solid var(--border);font-size:12px;color:var(--text3);letter-spacing:.1em}
+
+@media(max-width:600px){
+  .stats-row{grid-template-columns:1fr 1fr}
+  .controls{gap:7px}
+  .search-wrap{width:100%;margin-left:0}
+  .search-wrap input{width:100%}
+  .det-body{grid-template-columns:1fr}
+  .logo span{display:none}
+}
+</style>
+
+<div class="site">
+
+  <nav>
+    <div class="logo">Anime<span>NEXUS</span></div>
+    <div class="nav-right">
+      <button class="toggle" id="themeBtn">Light Mode</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Your anime universe</div>
+    <h1 class="hero-title">Discover <em>Legendary</em><br>Anime Series</h1>
+    <p class="hero-desc">Explore top-rated anime across every genre — from action-packed shonen to mind-bending psychological thrillers.</p>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="stats-row" id="statsRow"></div>
+    <div class="controls">
+      <button class="filter-btn active" data-genre="all">All</button>
+      <button class="filter-btn" data-genre="Action">Action</button>
+      <button class="filter-btn" data-genre="Psychological">Psychological</button>
+      <button class="filter-btn" data-genre="Fantasy">Fantasy</button>
+      <button class="filter-btn" data-genre="Sci-Fi">Sci-Fi</button>
+      <button class="filter-btn" data-genre="Romance">Romance</button>
+      <div class="search-wrap"><input type="text" id="search" placeholder="Search anime..."></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="detail-overlay" id="detail">
+      <div class="detail-box">
+        <div class="det-close" id="detClose">CLOSE X</div>
+        <div class="det-head">
+          <div class="det-title" id="detTitle"></div>
+          <div class="det-score" id="detScore"></div>
+        </div>
+        <div class="det-body">
+          <div class="det-desc" id="detDesc"></div>
+          <div class="det-field"><label>Studio</label><span id="detStudio"></span></div>
+          <div class="det-field"><label>Episodes</label><span id="detEps"></span></div>
+          <div class="det-field"><label>Year</label><span id="detYear"></span></div>
+          <div class="det-field"><label>Status</label><span id="detStatus"></span></div>
+          <div class="det-field"><label>Genres</label><span id="detGenres"></span></div>
+          <div class="det-field"><label>Popularity Rank</label><span id="detRank"></span></div>
+        </div>
+        <button class="ask-btn" id="detAsk"></button>
+      </div>
+    </div>
+    <div class="no-results" id="noResults" style="display:none">No anime found. Try a different search.</div>
+  </div>
+
+  <footer>ANIME NEXUS &mdash; Data sourced from public anime records &mdash; 2025</footer>
+</div>
+
+<script>
+const animeData = [
+  {id:1,title:"Attack on Titan",jp:"Shingeki no Kyojin",studio:"MAPPA / Wit Studio",year:2013,eps:87,score:9.0,status:"Finished",genres:["Action","Dark Fantasy","Post-Apocalyptic"],desc:"Humanity lives inside cities surrounded by enormous walls due to the Titans, gigantic humanoid beings who devour humans seemingly without reason. Eren Yeager vows to exterminate them after his mother is killed.",rank:1},
+  {id:2,title:"Fullmetal Alchemist: Brotherhood",jp:"Hagane no Renkinjutsushi",studio:"Bones",year:2009,eps:64,score:9.1,status:"Finished",genres:["Action","Adventure","Fantasy"],desc:"Two brothers use alchemy to try to bring their deceased mother back to life, resulting in disaster. Edward loses his arm and leg, while Alphonse loses his entire body. They embark on a quest for the Philosopher's Stone.",rank:2},
+  {id:3,title:"Death Note",jp:"Desu Nōto",studio:"Madhouse",year:2006,eps:37,score:8.6,status:"Finished",genres:["Psychological","Thriller","Supernatural"],desc:"A high school student discovers a supernatural notebook that kills anyone whose name is written in it. He uses it to create a crime-free world, but a genius detective is hot on his trail.",rank:3},
+  {id:4,title:"Demon Slayer",jp:"Kimetsu no Yaiba",studio:"ufotable",year:2019,eps:55,score:8.7,status:"Airing",genres:["Action","Dark Fantasy","Historical"],desc:"Tanjiro Kamado becomes a demon slayer after his family is slaughtered and his sister Nezuko is turned into a demon. He trains to find a cure and avenge his family.",rank:4},
+  {id:5,title:"Neon Genesis Evangelion",jp:"Shin Seiki Evangerion",studio:"Gainax",year:1995,eps:26,score:8.5,status:"Finished",genres:["Sci-Fi","Psychological","Mecha"],desc:"In a post-apocalyptic world, teenagers pilot giant bio-mechanical robots called Evangelions to protect Earth from mysterious beings known as Angels, while dealing with deep psychological trauma.",rank:5},
+  {id:6,title:"Hunter x Hunter",jp:"Hantā Hantā",studio:"Madhouse",year:2011,eps:148,score:9.0,status:"Finished",genres:["Action","Adventure","Fantasy"],desc:"Gon Freecss aspires to become a Hunter to find his absent father. He befriends Killua, Leorio, and Kurapika along the way, facing increasingly dangerous trials.",rank:6},
+  {id:7,title:"One Piece",jp:"Wan Pīsu",studio:"Toei Animation",year:1999,eps:1100,score:8.7,status:"Airing",genres:["Action","Adventure","Fantasy"],desc:"Monkey D. Luffy, a boy who gains rubber powers from a Devil Fruit, sets out to find the legendary treasure One Piece and become King of the Pirates.",rank:7},
+  {id:8,title:"Steins;Gate",jp:"Shutainzu Gēto",studio:"White Fox",year:2011,eps:24,score:9.1,status:"Finished",genres:["Sci-Fi","Psychological","Thriller"],desc:"A self-proclaimed mad scientist discovers that his microwave can send text messages to the past. He and his lab members experiment with time travel, facing devastating consequences.",rank:8},
+  {id:9,title:"Violet Evergarden",jp:"Vaioretto Ebāgāden",studio:"Kyoto Animation",year:2018,eps:13,score:8.7,status:"Finished",genres:["Drama","Fantasy","Romance"],desc:"A former soldier who lost both arms seeks to understand the meaning of the words 'I love you' by working as an Auto Memory Doll, writing letters for people who struggle to express themselves.",rank:9},
+  {id:10,title:"Mob Psycho 100",jp:"Mobu Saiko Hyaku",studio:"Bones",year:2016,eps:37,score:8.8,status:"Finished",genres:["Action","Psychological","Supernatural"],desc:"Shigeo 'Mob' Kageyama is a powerful esper who suppresses his emotions to control his psychic powers. Despite his abilities, he just wants to be normal and impress his crush.",rank:10},
+  {id:11,title:"Sword Art Online",jp:"Sōdo Āto Onrain",studio:"A-1 Pictures",year:2012,eps:96,score:7.2,status:"Finished",genres:["Action","Sci-Fi","Romance"],desc:"Players of a virtual reality MMORPG are trapped inside the game with no way out — dying in the game means dying in reality. Kirito fights to survive and escape.",rank:11},
+  {id:12,title:"Your Lie in April",jp:"Shigatsu wa Kimi no Uso",studio:"A-1 Pictures",year:2014,eps:22,score:8.7,status:"Finished",genres:["Drama","Romance","Music"],desc:"A piano prodigy who can no longer hear the music he plays meets a free-spirited violinist who reawakens his love for music and changes his life forever.",rank:12}
+];
+
+let activeGenre = "all";
+let searchQ = "";
+let selectedId = null;
+let isDark = true;
+
+function genreMatch(a){
+  if(activeGenre==="all") return true;
+  return a.genres.some(g=>g.toLowerCase()===activeGenre.toLowerCase());
+}
+
+function filtered(){
+  return animeData.filter(a=>{
+    const gm = genreMatch(a);
+    const sm = !searchQ || a.title.toLowerCase().includes(searchQ) || a.jp.toLowerCase().includes(searchQ) || a.genres.some(g=>g.toLowerCase().includes(searchQ));
+    return gm && sm;
+  });
+}
+
+function statusClass(s){
+  if(s==="Airing") return "s-airing";
+  if(s==="Finished") return "s-finished";
+  return "s-upcoming";
+}
+
+function renderStats(){
+  const all = animeData;
+  const avg = (all.reduce((s,a)=>s+a.score,0)/all.length).toFixed(1);
+  const top = all.reduce((t,a)=>a.score>t.score?a:t);
+  document.getElementById("statsRow").innerHTML=`
+    <div class="stat-card"><div class="stat-num">${all.length}</div><div class="stat-lbl">total anime</div></div>
+    <div class="stat-card"><div class="stat-num">${avg}</div><div class="stat-lbl">avg score</div></div>
+    <div class="stat-card"><div class="stat-num">${all.filter(a=>a.status==="Airing").length}</div><div class="stat-lbl">airing now</div></div>
+    <div class="stat-card"><div class="stat-num">${top.score}</div><div class="stat-lbl">highest rated</div></div>
+  `;
+}
+
+function renderGrid(){
+  const list = filtered();
+  const grid = document.getElementById("grid");
+  const nr = document.getElementById("noResults");
+  if(!list.length){grid.innerHTML="";nr.style.display="block";return;}
+  nr.style.display="none";
+  grid.innerHTML = list.map(a=>`
+    <div class="anime-card" onclick="openDetail(${a.id})">
+      <div class="card-banner"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-title">${a.title}</div>
+          <div class="score-badge">${a.score}</div>
+        </div>
+        <div class="card-meta">${a.jp} &middot; ${a.year}</div>
+        <div class="card-desc">${a.desc}</div>
+        <div class="card-tags">${a.genres.map(g=>`<span class="genre-tag">${g}</span>`).join("")}</div>
+        <div class="card-footer">
+          <span class="eps">${a.eps} eps</span>
+          <span><span class="status-dot ${statusClass(a.status)}"></span>${a.status}</span>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function openDetail(id){
+  const a = animeData.find(x=>x.id===id);
+  selectedId = id;
+  document.getElementById("detTitle").textContent = a.title;
+  document.getElementById("detScore").textContent = a.score + " / 10";
+  document.getElementById("detDesc").textContent = a.desc;
+  document.getElementById("detStudio").textContent = a.studio;
+  document.getElementById("detEps").textContent = a.eps;
+  document.getElementById("detYear").textContent = a.year;
+  document.getElementById("detStatus").textContent = a.status;
+  document.getElementById("detGenres").textContent = a.genres.join(", ");
+  document.getElementById("detRank").textContent = "#" + a.rank;
+  document.getElementById("detAsk").textContent = "Ask Claude about " + a.title + " \u2197";
+  document.getElementById("detAsk").onclick = ()=>sendPrompt("Tell me more about the anime " + a.title + " — plot details, characters, why fans love it, and similar recommendations.");
+  document.getElementById("detail").classList.add("open");
+  document.getElementById("detail").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+document.getElementById("detClose").onclick = ()=>{
+  document.getElementById("detail").classList.remove("open");
+};
+
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    activeGenre = btn.dataset.genre;
+    renderGrid();
+  });
+});
+
+document.getElementById("search").addEventListener("input",e=>{
+  searchQ = e.target.value.trim().toLowerCase();
+  renderGrid();
+});
+
+document.getElementById("themeBtn").addEventListener("click",()=>{
+  isDark = !isDark;
+  document.querySelector(".site").closest("body")||document.documentElement;
+  if(isDark){
+    document.getElementById("themeBtn").textContent="Light Mode";
+    document.querySelectorAll(".site,.site *").forEach(el=>el.classList.remove("light"));
+    document.body.classList.remove("light");
+    document.querySelector(".site").classList.remove("light");
+  } else {
+    document.getElementById("themeBtn").textContent="Dark Mode";
+    document.body.classList.add("light");
+    document.querySelector(".site").classList.add("light");
+  }
+});
+
+renderStats();
+renderGrid();
+</script>
